@@ -1,77 +1,16 @@
-## Activity File: Interview Questions
-
-- This first project covers a wide range of topics including cloud, network security, and logging and monitoring.
-
-- When networking and talking to potential employers, you should be able to reference the work done on this project to answer specific interview questions or demonstrate your skills within a specific domain. 
-
-- You will choose a domain that you're interested in pursuing as a career and answer mock questions based on the suggested response format. 
-​
-### Instructions 
-
-1. Choose one of the following domains:
-    - Network security
-    - Cloud security
-    - Logging and monitoring
-
-    If you are unsure of which domain you want to focus on, that's okay. You can either choose the one you're most comfortable discussing, or complete the tasks in two or all three domains.
-
-2. Select one domain and one question. 
-
-    - Questions are provided for each domain. Choose one to answer from your chosen domain. 
-​
-3. Write a one-page response that answers the question using specific examples from your work on Project 1. Your response should flow and read like a presentation while keeping the general structure of the technical question response guidelines. 
-
-    You will submit this one-page response. 
-
-#### Reminder: Response Guidelines
-As a reminder,  good responses do the following. 
-​
-1. Restate the problem.
-2. Provide a concrete example scenario.
-3. Explain the solution requirements.
-4. Explain the solution details.
-5. Identify advantages and disadvantages of the solution​.
-​
-Including each of these components will ensure you prove your competency of subject matter and critical thinking. 
-​
-### Interview Questions by Domain
-
-Below you will find a list of questions, grouped by specific domains. Select one question to answer. 
-​ 
-
-For each question, where appropriate, we have provided you with specific prompts to consider as you structure each section of your response. Feel free to use these prompts or your own examples. 
-
 #### Domain: Network Security
 
 **Question 1:  Faulty Firewall**
 
-Suppose you have a firewall that's supposed to block SSH connections, but instead lets them through. How would you debug it?
+Suppose you have a firewall that's supposed to block SSH connections, but instead lets them through. 
+How would you debug it?
 
-Make sure each section of your response answers the questions laid out below.
-​
-1. Restate the Problem
+It is important that firewall rules are configured properly as they are primarily the first line of defense between a system's internal network and the external network. Secure Shell (SSH) allows an individual to remotely access a system from their own device usually through port 22. There are various entities that are actively searching for open access through this port. In this scenario, each and every SSH  connection is allowed through the firewall, which in turn leaves the network vulnerable to remote attacks.
 
-2. Provide a Concrete Example Scenario
-    - In Project 1, did you allow SSH traffic to all of the VMs on your network?
-    - Which VMs did accept SSH connections?
-    - What happens if you try to connect to a VM that does not accept SSH connections? Why?
+	In Project 1 of my Cybersecurity boot camp, we created an Azure virtual network that contained various virtual machines (VMs), which only I was able to access via SSH by creating firewall rules that regulated remote access controls. First we created a “DenyAllInBound” rule that denied access to the virtual network from every source, port and protocol. After creating this rule, we were then able to create an “SSH allow” rule that allowed us to access the virtual network from our own local ip address by connecting to the Virtual JumpBox. After accessing the Virtual Jumpbox machine, we could then connect to the two virtual machines that were created within the network. Overall, each VM accepted SSH connections with certain restrictions in place in order to control remote access into the network. This in turn protects the network from any unwanted access via SSH as only authorized individuals are able to connect to the device while unauthorized connections will be refused.
 
-3. Explain the Solution Requirements
-    - If one of your Project 1 VMs accepted SSH connections, what would you assume the source of the error is?
-    - Which general configurations would you double-check?
-    - What actions would you take to test that your new configurations are effective?
+	Assuming that only one VM is accepting SSH connections while the other is not, we can assume that the source of error lies within the configuration of the network security group. First I would double check if the source and destination ip addresses for the SSH rules are correct as one may have used the dynamic public ip address instead of the private ip address of the virtual machines. Another configuration that may be incorrect would be adding the virtual machine to the wrong resource group or virtual network. After ensuring that the configurations are correct, the connections can then be tested by SSHing into the machine that was having the initial error.
 
-
-4. Explain the Solution Details
-    - Which specific panes in the Azure UI would you look at to investigate the problem?
-    - Which specific configurations and controls would you check?
-    - What would you look for, specifically?
-    - How would you attempt to connect to your VMs to test that your fix is effective?
-
-5. Identify Advantages/Disadvantages of the Solution
-
-    - Does your solution guarantee that the Project 1 network is now "immune" to all unauthorized access?
-
-
-    - What monitoring controls might you add to ensure that you identify any suspicious authentication attempts?​
+	By configuring the firewall rules for the entire network, we allowed SSH connections from only authorized users. These rules allowed the local user to SSH into the jump box provisioner and from there, the user was able to SSH into the virtual machines within the network. To ensure that only the local user was able to SSH into these machines, we used a public-private key binding pair which basically ensures that only the host user is the only individual with authorized access to this network. Lastly, we can add an intrusion prevention system (IPS) and an intrusion detection system (IDS) to monitor, log and mitigate any suspicious authentication attempts.
+	
 
