@@ -47,7 +47,7 @@ Before we begin generating traffic, locate the two screens inside Kibana that yo
 - Logs
 - Metrics
 
-    ![](Images/Metrics-Logs.png)
+    https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/MetricLogs.PNG
 
 These pages will show you the changes in data that we will create.
 
@@ -55,11 +55,11 @@ These pages will show you the changes in data that we will create.
 
 - Click **Logs** to see some general system logs coming from the web machines.
 
-    ![](Images/Logs-General.png)
+    https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/Logs%20General.PNG
 
 - Notice that you can stream logs live from the machines. 
 
-    ![](Images/Stream-Live.png)
+    https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/StreamLiveLogs.PNG
 
 #### Metrics
 
@@ -71,11 +71,11 @@ These pages will show you the changes in data that we will create.
 
 - Choose **View metrics** from the dropdown that appears.
 
-    ![](Images/Metric-VM-Dropdown.png)
+    https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/MetricVMDropDown.PNG
 
 - Notice that you can see CPU and memory usage here.
 
-    ![](Images/Host-Overview.png)
+    https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/HostOverview.PNG
 
 Now that we know where to look for this data, let's generate some unusual network traffic.
 
@@ -178,9 +178,12 @@ Linux has a common, easy-to-use diagnostic program called `stress`. It is easy t
 4. Run `sudo stress --cpu 1` and allow `stress` to run for a few minutes. 
 
 5. View the Metrics page for that VM in Kibana.  What indicates that CPU usage increased?
+CPU usage increased to 99.9% under stress from 1.3% when the system is not undergoing any stress
+Additionally there is an increase in the number of processes running. Additionally, the Load Gauge & memory usage has also increased
 
 6. Run the `stress` program on all three of your VMs and take screenshots of the data generated on the Metrics page of Kibana.
-
+https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/Web1Stress.PNG
+https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/Web2Stress.PNG
   	- **Note:** The stress program will run until you quit with Ctrl+C.
 </details>
 
@@ -248,6 +251,8 @@ We can generate abnormal data to view by creating a DoS web attack. The command-
 5. Open the Metrics page for the web machine you attacked and answer the following questions:
 	
 	- Which of the VM metrics were affected the most from this traffic?
+https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/WgetWeb1.PNG
+Memory Usage was affected the most from this type of traffic.
 
 **Bonus**: Notice that your `wget` loop creates a lot of duplicate files on your jump box.
 
