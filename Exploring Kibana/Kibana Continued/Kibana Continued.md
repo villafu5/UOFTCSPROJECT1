@@ -98,7 +98,9 @@ Task: Generate a high amount of failed SSH login attempts and verify that Kibana
 
 **Your Task**: Generate a high amount of failed SSH login attempts and verify that Kibana is picking up this activity.
 
----
+https://github.com/villafu5/UOFTCSPROJECT1/blob/main/Exploring%20Kibana/Kibana%20Continued/FailedSSHAttempts.png
+
+Issues with Kibana arose as it was not recording any of the invalid ssh login attempts, even though it was able to record accepted ssh login requests
 
 #### Instructions
 
